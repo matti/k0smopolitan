@@ -10,4 +10,13 @@ hostname_ipaddress="${ip_address//./-}"
 
 hostnamectl set-hostname "${hostname_now}-${hostname_ipaddress}"
 
+while true; do
+  if [[ -f "$HOME/jointoken" ]]; then
+    break
+  fi
+
+  echo "still waiting for jointoken..."
+  sleep 1
+done
+
 exec k0s worker --token-file="$HOME/jointoken"
