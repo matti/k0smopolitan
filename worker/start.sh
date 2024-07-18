@@ -3,13 +3,14 @@
 set -eEuo pipefail
 set -x
 
+rm -rf /etc/k0s
+rm -rf /var/lib/k0s
+
 ip_address="$(hostname -I | cut -d' ' -f1)"
 hostname_now=$(date +"%Y-%m-%d-%H-%M-%S")
 hostname_ipaddress="${ip_address//./-}"
 
 hostnamectl set-hostname "${hostname_now}-${hostname_ipaddress}"
-
-rm -rf /etc/k0s
 
 modprobe nbd max_part=8
 
