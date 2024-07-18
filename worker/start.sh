@@ -21,7 +21,7 @@ rm -rf /mnt/ramdisks
 mkdir -p /mnt/ramdisks
 
 ramdisk_size_total_mb=$(( 12 * 1024 ))
-ramdisk_size_usable_mb=$(( ramdisk_size_total_mb - 10 ))
+ramdisk_size_usable_mb=$(( ramdisk_size_total_mb - 100 ))
 
 mount -t tmpfs -o size="${ramdisk_size_total_mb}m" tmpfs /mnt/ramdisks
 qemu-img create -o preallocation=full -f qcow2 /mnt/ramdisks/var-lib-k0s-containerd.qcow2 "${ramdisk_size_usable_mb}m"
