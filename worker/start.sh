@@ -3,6 +3,9 @@
 set -eEuo pipefail
 set -x
 
+# cleanup kube-bridge ??
+k0s reset || true
+
 rm -rf /etc/k0s
 rm -rf /var/lib/k0s
 
