@@ -14,9 +14,11 @@ fi
     sleep 1
   done
 
-  if [[ ! -f /root/jointoken ]]; then
-    k0s token create --role=worker > /root/jointoken
+  if [[ ! -f /tmp/jointoken ]]; then
+    k0s token create --role=worker > /tmp/jointoken
   fi
+
+  k0s kubeconfig admin > /tmp/kubeconfig
 
   echo "Applying k8s-unreachable-node-cleaner..."
   while true; do
