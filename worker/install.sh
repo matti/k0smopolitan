@@ -10,7 +10,7 @@ apt-get update
 apt-get upgrade -y
 
 apt-get install -y \
-  curl screen htop cron scp
+  curl screen htop cron
 
 curl -sSLf https://get.k0s.sh | K0S_VERSION=v1.29.6+k0s.0 sh
 
