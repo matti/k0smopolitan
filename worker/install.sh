@@ -33,4 +33,6 @@ network:
 
 printf "@reboot screen -dmS k0s bash -l -c '/root/k0smopolitan/worker/start.sh'\n" | crontab
 
+rm -rf /root/jointoken
+
 reboot
