@@ -3,10 +3,6 @@
 set -eEuo pipefail
 set -x
 
-k0s reset || true
-rm -rf /etc/k0s
-rm -rf /var/lib/k0s
-
 ip_address="$(hostname -I | cut -d' ' -f1)"
 
 hostname_now=$(date +"%Y-%m-%d-%H-%M-%S")

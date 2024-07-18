@@ -31,6 +31,6 @@ network:
   version: 2
 """ > /etc/netplan/50-cloud-init.yaml
 
-printf "@reboot screen -dmS k0s bash -l -c '/root/k0smopolitan/worker/restart.sh'\n" | crontab
+printf "@reboot screen -dmS k0s bash -l -c '/root/k0smopolitan/worker/start.sh'\n" | crontab
 
 reboot
