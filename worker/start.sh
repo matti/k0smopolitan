@@ -37,4 +37,14 @@ until [[ -f "$HOME/jointoken" ]] do
   sleep 1
 done
 
-exec k0s worker --token-file="$HOME/jointoken"
+while true; do
+  if [[ -f "$HOME/labels" ]]; then
+    labels=$(cat "$HOME/labels")
+    k0s worker --token-file="$HOME/jointoken" --labels "$labels" || true
+  else
+    k0s worker --token-file="$HOME/jointoken" || true
+  fi
+
+  echo "-- k0s restarted"
+  sleep 1
+done
