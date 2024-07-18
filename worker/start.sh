@@ -15,24 +15,30 @@ hostname_ipaddress="${ip_address//./-}"
 
 hostnamectl set-hostname "${hostname_now}-${hostname_ipaddress}"
 
-# modprobe nbd max_part=8
 
-# rm -rf /mnt/ramdisks
-# mkdir -p /mnt/ramdisks
+ubuntu_version=$(lsb_release --release -s)
+case "$ubuntu_version" in
+  22.04)
+    modprobe nbd max_part=8
 
-# ramdisk_size_total_mb=$(( 12 * 1024 ))
-# ramdisk_size_usable_mb=$(( ramdisk_size_total_mb - 100 ))
+    rm -rf /mnt/ramdisks
+    mkdir -p /mnt/ramdisks
 
-# mount -t tmpfs -o size="${ramdisk_size_total_mb}m" tmpfs /mnt/ramdisks
-# qemu-img create -o preallocation=full -f qcow2 /mnt/ramdisks/var-lib-k0s-containerd.qcow2 "${ramdisk_size_usable_mb}m"
-# qemu-nbd --connect=/dev/nbd0 /mnt/ramdisks/var-lib-k0s-containerd.qcow2
+    ramdisk_size_total_mb=$(( 12 * 1024 ))
+    ramdisk_size_usable_mb=$(( ramdisk_size_total_mb - 100 ))
 
-# mkfs.ext4 /dev/nbd0
+    mount -t tmpfs -o size="${ramdisk_size_total_mb}m" tmpfs /mnt/ramdisks
+    qemu-img create -o preallocation=full -f qcow2 /mnt/ramdisks/var-lib-k0s-containerd.qcow2 "${ramdisk_size_usable_mb}m"
+    qemu-nbd --connect=/dev/nbd0 /mnt/ramdisks/var-lib-k0s-containerd.qcow2
 
-# mkdir -p /var/lib/k0s/containerd
-# mount /dev/nbd0 /var/lib/k0s/containerd
+    mkfs.ext4 /dev/nbd0
 
-until [[ -f "$HOME/jointoken" ]] do
+    mkdir -p /var/lib/k0s/containerd
+    mount /dev/nbd0 /var/lib/k0s/containerd
+  ;;
+esac
+
+until [[ -f "$HOME/jointoken" ]]; do
   echo "still waiting for jointoken..."
   sleep 1
 done

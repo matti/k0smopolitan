@@ -3,6 +3,8 @@
 set -eEuo pipefail
 set -x
 
+export DEBIAN_FRONTEND=noninteractive
+
 gateway=$1
 ip_address=$2
 
