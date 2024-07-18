@@ -10,6 +10,8 @@ hostname_ipaddress="${ip_address//./-}"
 
 hostnamectl set-hostname "${hostname_now}-${hostname_ipaddress}"
 
+modprobe nbd max_part=8
+
 rm -rf /mnt/ramdisks
 mkdir -p /mnt/ramdisks
 
