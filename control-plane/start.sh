@@ -22,7 +22,7 @@ fi
 
   echo "Applying k8s-unreachable-node-cleaner..."
   while true; do
-    k0s kubectl apply -f https://raw.githubusercontent.com/matti/k8s-unreachable-node-cleaner/d9ff3424b563aeecfff8e62284c4c435140b2fbf/k8s/all.yml && break
+    k0s kubectl apply -f https://raw.githubusercontent.com/matti/k8s-unreachable-node-cleaner/57aef714ae20489469ac332c2c44852cd501824f/k8s/all.yml && break
 
     echo "retrying apply of k8s-unreachable-node-cleaner..."
     sleep 1
