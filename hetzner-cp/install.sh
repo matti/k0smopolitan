@@ -35,7 +35,7 @@ k0s kubeconfig admin > /root/kubeconfig
 
 echo "Applying k8s-unreachable-node-cleaner..."
 while true; do
-  k0s kubectl apply -f https://raw.githubusercontent.com/matti/k8s-unreachable-node-cleaner/57aef714ae20489469ac332c2c44852cd501824f/k8s/all.yml && break
+  k0s kubectl apply -f https://raw.githubusercontent.com/matti/k8s-unreachable-node-cleaner/ced02131ff34d4c721f93deb6ce65c0d7a9ccca9/k8s/all.yml && break
 
   echo "retrying apply of k8s-unreachable-node-cleaner..."
   sleep 1
