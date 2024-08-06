@@ -46,9 +46,11 @@ done
 while true; do
   if [[ -f "$HOME/labels" ]]; then
     labels=$(cat "$HOME/labels")
-    k0s worker --token-file="$HOME/jointoken" --labels "$labels" | tee -a "$HOME/k0s.log" || true
+    #k0s worker --token-file="$HOME/jointoken" --labels "$labels" | tee -a "$HOME/k0s.log" || true
+    k0s worker --token-file="$HOME/jointoken" --labels "$labels" || true
   else
-    k0s worker --token-file="$HOME/jointoken" | tee -a "$HOME/k0s.log" || true
+    #k0s worker --token-file="$HOME/jointoken" | tee -a "$HOME/k0s.log" || true
+    k0s worker --token-file="$HOME/jointoken" || true
   fi
 
   echo "-- $(date) k0s restarted" | tee -a "$HOME/k0s.log"
